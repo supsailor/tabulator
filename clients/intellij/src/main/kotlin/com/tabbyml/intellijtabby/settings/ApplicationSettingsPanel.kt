@@ -67,7 +67,7 @@ class ApplicationSettingsPanel {
                 invokeLater(ModalityState.stateForComponent(parentComponent)) {
                   Messages.showInfoMessage(
                     parentComponent,
-                    "Successfully connected to the Tabby server.",
+                    "Successfully connected to the MTS Copilot server.",
                     "Check Connection Completed"
                   )
                 }
@@ -79,7 +79,7 @@ class ApplicationSettingsPanel {
                   invokeLater(ModalityState.stateForComponent(parentComponent)) {
                     Messages.showInfoMessage(
                       parentComponent,
-                      "Successfully connected to the Tabby server.",
+                      "Successfully connected to the MTS Copilot server.",
                       "Check Connection Completed"
                     )
                   }
@@ -87,7 +87,7 @@ class ApplicationSettingsPanel {
                   invokeLater(ModalityState.stateForComponent(parentComponent)) {
                     Messages.showErrorDialog(
                       parentComponent,
-                      "Failed to connect to the Tabby server.",
+                      "Failed to connect to the MTS Copilot server.",
                       "Check Connection Failed"
                     )
                   }
@@ -99,7 +99,7 @@ class ApplicationSettingsPanel {
                 if (detail?.get("name") == "connectionFailed") {
                   invokeLater(ModalityState.stateForComponent(parentComponent)) {
                     val errorMessage = (detail["message"] as String?)?.replace("\n", "<br/>") ?: ""
-                    val messages = "<html>Failed to connect to the Tabby server:<br/>${errorMessage}</html>"
+                    val messages = "<html>Failed to connect to the MTS Copilot server:<br/>${errorMessage}</html>"
                     Messages.showErrorDialog(parentComponent, messages, "Check Connection Failed")
                   }
                 }
@@ -124,7 +124,7 @@ class ApplicationSettingsPanel {
     .addCopyableTooltip(
       """
       <html>
-      A http or https URL of Tabby server endpoint.<br/>
+      A http or https URL of MTS Copilot server endpoint.<br/>
       If leave empty, server endpoint config in <i>~/.tabby-client/agent/config.toml</i> will be used.<br/>
       Default to <i>http://localhost:8080</i>.
       </html>
@@ -139,8 +139,8 @@ class ApplicationSettingsPanel {
     .addCopyableTooltip(
       """
       <html>
-      Path to the Node binary for running the Tabby agent. The Node version must be >= 18.0.<br/>
-      If left empty, Tabby will attempt to find the Node binary in the <i>PATH</i> environment variable.<br/>
+      Path to the Node binary for running the MTS Copilot agent. The Node version must be >= 18.0.<br/>
+      If left empty, MTS Copilot will attempt to find the Node binary in the <i>PATH</i> environment variable.<br/>
       </html>
       """.trimIndent()
     )
@@ -160,14 +160,14 @@ class ApplicationSettingsPanel {
     .panel
 
   private val keymapStyleDefaultRadioButton = JBRadioButton("Default")
-  private val keymapStyleTabbyStyleRadioButton = JBRadioButton("Tabby style")
+  private val keymapStyleTabbyStyleRadioButton = JBRadioButton("MTS Copilot style")
   private val keymapStyleCustomRadioButton = JBRadioButton("<html><a href=''>Customize...</a><html>").apply {
     addActionListener {
       ShowSettingsUtil.getInstance().showSettingsDialog(null, KeymapPanel::class.java) { panel ->
         CoroutineScope(Dispatchers.IO).launch {
           Thread.sleep(500) // FIXME: It seems that we need to wait for the KeymapPanel to be ready?
           invokeLater(ModalityState.stateForComponent(panel)) {
-            panel.showOption("Tabby")
+            panel.showOption("MTS Copilot")
           }
         }
       }
@@ -193,7 +193,7 @@ class ApplicationSettingsPanel {
     .addCopyableTooltip(
       """
       <html>
-      Tabby collects aggregated anonymous usage data and sends it to the Tabby team to help improve our products.<br/>
+      MTS Copilot collects aggregated anonymous usage data and sends it to the MTS Copilot team to help improve our products.<br/>
       Your code, generated completions, or any identifying information is never tracked or transmitted.<br/>
       For more details on data collection, please check our <a href="https://tabby.tabbyml.com/docs/extensions/configuration#usage-collection">online documentation</a>.<br/>
       </html>

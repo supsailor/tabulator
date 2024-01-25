@@ -22,7 +22,7 @@ class OpenAuthPage : AnAction() {
 
     val task = object : Task.Modal(
       e.project,
-      "Tabby Server Authorization",
+      "MTS Copilot Server Authorization",
       true
     ) {
       lateinit var job: Job

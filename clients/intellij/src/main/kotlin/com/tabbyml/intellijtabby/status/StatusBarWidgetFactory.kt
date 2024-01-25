@@ -24,12 +24,13 @@ import kotlinx.coroutines.launch
 import javax.swing.Icon
 
 class StatusBarWidgetFactory : StatusBarEditorBasedWidgetFactory() {
+
   override fun getId(): String {
     return StatusBarWidgetFactory::class.java.name
   }
 
   override fun getDisplayName(): String {
-    return "Tabby"
+    return "MTS Copilot"
   }
 
   override fun createWidget(project: Project): StatusBarWidget {
@@ -42,9 +43,9 @@ class StatusBarWidgetFactory : StatusBarEditorBasedWidgetFactory() {
 
     return object : EditorBasedStatusBarPopup(project, false) {
       val updateStatusScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
-      val text = "Tabby"
+      val text = "MTS Copilot"
       var icon: Icon = AnimatedIcon.Default()
-      var tooltip = "Tabby: Initializing"
+      var tooltip = "MTS Copilot: Initializing"
 
       init {
         val settings = service<ApplicationSettingsState>()
@@ -96,12 +97,12 @@ class StatusBarWidgetFactory : StatusBarEditorBasedWidgetFactory() {
         when (state.agentStatus) {
           AgentService.Status.INITIALIZING, Agent.Status.NOT_INITIALIZED -> {
             icon = AnimatedIcon.Default()
-            tooltip = "Tabby: Initializing"
+            tooltip = "MTS Copilot: Initializing"
           }
 
           AgentService.Status.INITIALIZATION_FAILED -> {
             icon = AllIcons.General.Error
-            tooltip = "Tabby: Initialization failed"
+            tooltip = "MTS Copilot: Initialization failed"
           }
 
           Agent.Status.READY -> {
@@ -112,29 +113,29 @@ class StatusBarWidgetFactory : StatusBarEditorBasedWidgetFactory() {
             if (state.currentIssue != null && state.currentIssue !in muted) {
               icon = AllIcons.General.Warning
               tooltip = when (state.currentIssue) {
-                "slowCompletionResponseTime" -> "Tabby: Completion requests appear to take too much time"
-                "highCompletionTimeoutRate" -> "Tabby: Most completion requests timed out"
-                else -> "Tabby: Issues exist"
+                "slowCompletionResponseTime" -> "MTS Copilot: Completion requests appear to take too much time"
+                "highCompletionTimeoutRate" -> "MTS Copilot: Most completion requests timed out"
+                else -> "MTS Copilot: Issues exist"
               }
             } else {
               when (state.settings.completionTriggerMode) {
                 ApplicationSettingsState.TriggerMode.AUTOMATIC -> {
                   if (state.ongoingCompletion == null) {
                     icon = AllIcons.Actions.Checked
-                    tooltip = "Tabby: Automatic code completion is enabled"
+                    tooltip = "MTS Copilot: Automatic code completion is enabled"
                   } else {
                     icon = AnimatedIcon.Default()
-                    tooltip = "Tabby: Generating code completions"
+                    tooltip = "MTS Copilot: Generating code completions"
                   }
                 }
 
                 ApplicationSettingsState.TriggerMode.MANUAL -> {
                   if (state.ongoingCompletion == null) {
                     icon = AllIcons.General.ChevronRight
-                    tooltip = "Tabby: Standing by, please manually trigger code completion."
+                    tooltip = "MTS Copilot: Standing by, please manually trigger code completion."
                   } else {
                     icon = AnimatedIcon.Default()
-                    tooltip = "Tabby: Generating code completions"
+                    tooltip = "MTS Copilot: Generating code completions"
                   }
                 }
               }
@@ -143,12 +144,12 @@ class StatusBarWidgetFactory : StatusBarEditorBasedWidgetFactory() {
 
           Agent.Status.DISCONNECTED -> {
             icon = AllIcons.General.Error
-            tooltip = "Tabby: Cannot connect to Server, please check settings"
+            tooltip = "MTS Copilot: Cannot connect to Server, please check settings"
           }
 
           Agent.Status.UNAUTHORIZED -> {
             icon = AllIcons.General.Warning
-            tooltip = "Tabby: Authorization required, click to continue"
+            tooltip = "MTS Copilot: Authorization required, click to continue"
           }
         }
         invokeLater {

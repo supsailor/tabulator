@@ -8,7 +8,7 @@ class ApplicationConfigurable : Configurable {
   private lateinit var settingsPanel: ApplicationSettingsPanel
 
   override fun getDisplayName(): String {
-    return "Tabby"
+    return "MTS Copilot"
   }
 
   override fun createComponent(): JComponent {

@@ -79,7 +79,7 @@ class AgentService : Disposable {
 
         val notification = Notification(
           "com.tabbyml.intellijtabby.notification.warning",
-          "Tabby initialization failed",
+          "MTS Copilot initialization failed",
           "${e.message}",
           NotificationType.ERROR,
         )
@@ -140,7 +140,7 @@ class AgentService : Disposable {
         logger.info("Will show auth required notification.")
         val notification = Notification(
           "com.tabbyml.intellijtabby.notification.warning",
-          "Authorization required for Tabby server",
+          "Authorization required for MTS Copilot server",
           NotificationType.WARNING,
         )
         notification.addAction(ActionManager.getInstance().getAction("Tabby.OpenAuthPage"))
@@ -165,7 +165,7 @@ class AgentService : Disposable {
         val showCompletionResponseWarnings = !completionResponseWarningShown &&
             !settings.notificationsMuted.contains("completionResponseTimeIssues")
         val message = when (issueName) {
-          "connectionFailed" -> "Cannot connect to Tabby server"
+          "connectionFailed" -> "Cannot connect to MTS Copilot server"
           "slowCompletionResponseTime" -> if (showCompletionResponseWarnings) {
             completionResponseWarningShown = true
             "Completion requests appear to take too much time"

@@ -28,7 +28,7 @@ class CheckIssueDetail : AnAction() {
           val messages = "<html>" + (detail["message"] as String?)?.replace("\n", "<br/>") + "</html>"
           val selected = Messages.showDialog(
             messages,
-            "Cannot Connect to Tabby Server",
+            "Cannot Connect to MTS Copilot Server",
             arrayOf("OK", "Online Help"),
             0,
             Messages.getErrorIcon(),
@@ -131,7 +131,7 @@ class CheckIssueDetail : AnAction() {
     val model = serverHealthState?.get("model") as String? ?: ""
     val helpMessageForRunningLargeModelOnCPU = if (device == "cpu" && model.endsWith("B")) {
       """
-      Your Tabby server is running model <i>$model</i> on CPU.
+      Your MTS Copilot server is running model <i>$model</i> on CPU.
       This model may be performing poorly due to its large parameter size, please consider trying smaller models or switch to GPU.
       You can find a list of recommend models in the <a href='https://tabby.tabbyml.com/docs/models/'>model registry</a>.
       """.trimIndent()
@@ -146,7 +146,7 @@ class CheckIssueDetail : AnAction() {
     }
     if (!(host.startsWith("localhost") || host.startsWith("127.0.0.1"))) {
       commonHelpMessage += "<li>A poor network connection. Please check your network and proxy settings.</li>"
-      commonHelpMessage += "<li>Server overload. Please contact your Tabby server administrator for assistance.</li>"
+      commonHelpMessage += "<li>Server overload. Please contact your MTS Copilot server administrator for assistance.</li>"
     }
 
     var helpMessage: String

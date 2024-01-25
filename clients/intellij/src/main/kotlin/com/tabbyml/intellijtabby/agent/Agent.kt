@@ -50,7 +50,7 @@ class Agent : ProcessAdapter() {
   open class AgentException(message: String) : Exception(message)
 
   open class NodeBinaryException(message: String) : AgentException(
-    message = "$message Please install Node.js version >= 18.0, set the binary path in Tabby plugin settings or add bin path to system environment variable PATH, then restart IDE."
+    message = "$message Please install Node.js version >= 18.0, set the binary path in MTS Copilot plugin settings or add bin path to system environment variable PATH, then restart IDE."
   )
 
   open class NodeBinaryNotFoundException : NodeBinaryException(
@@ -122,7 +122,7 @@ class Agent : ProcessAdapter() {
       logger.info("Node script path: ${script.absolutePath}")
       return script
     } else {
-      throw AgentException("Node script not found. Please reinstall Tabby plugin.")
+      throw AgentException("Node script not found. Please reinstall MTS Copilot plugin.")
     }
   }
 

@@ -5,24 +5,17 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Tabby</name>
+    <name>MTS Copilot</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor url="https://tabbyml.com">TabbyML</vendor>
+    <vendor url="https://mts.ru">MTS</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-        <h1 id="tabby-plugin-for-intellij-platform">Tabby Plugin for IntelliJ Platform</h1>
-        <p>Tabby is an AI coding assistant that can suggest multi-line code or full functions in real-time.</p>
-        <br/>
-        <p>For more information, please check out our <a href="https://tabbyml.com/">Website</a> and <a href="https://github.com/TabbyML/tabby">GitHub</a>.
-        If you encounter any problem or have any suggestion, please <a href="https://github.com/TabbyML/tabby/issues/new">open an issue</a>, or join our <a href="https://join.slack.com/t/tabbycommunity/shared_invite/zt-1xeiddizp-bciR2RtFTaJ37RBxr8VxpA">Slack community</a> for more support!</p>
-        <h2 id="demo">Demo</h2>
-        <p>Try our online demo <a href="https://tabby.tabbyml.com/playground/">here</a>.</p>
-        <h2 id="requirements">Requirements</h2>
-        Tabby plugin requires <a href="https://nodejs.org/">Node.js</a> v18+ installed. </p>
+        <h1 id="tabby-plugin-for-intellij-platform">MTS Copilot: Kolhoz Edition</h1>
+        MTS Copilot plugin requires <a href="https://nodejs.org/">Node.js</a> v18+ installed. </p>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -36,7 +29,7 @@
                 parentId="editor"
                 instance="com.tabbyml.intellijtabby.settings.ApplicationConfigurable"
                 id="com.tabbyml.intellijtabby.settings.ApplicationConfigurable"
-                displayName="Tabby"
+                displayName="MTS Copilot"
                 nonDefaultProject="true"/>
         <actionPromoter order="last" implementation="com.tabbyml.intellijtabby.editor.EditorActionPromoter"/>
         <editorFactoryListener implementation="com.tabbyml.intellijtabby.editor.EditorListener"/>
