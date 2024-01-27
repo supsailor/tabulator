@@ -42,6 +42,14 @@ class ChatBotActionService(private var actionType: ChatBotActionType) {
             return "Please add an API Key in the ChatBot settings"
         }
 
+        if (modelName.isEmpty()) {
+            return "Please add an model name in the ChatBot settings"
+        }
+
+        if (modelPath.isEmpty()) {
+            return "Please add an model path in the ChatBot settings"
+        }
+
         val chatbot = ChatBot(ChatGptHttp(apiKey, modelPath))
         val system = "Be as helpful as possible and concise with your response"
         val request = ChatCompletionRequest(modelName, system)
@@ -63,7 +71,7 @@ class ChatBotActionService(private var actionType: ChatBotActionType) {
             ApplicationManager.getApplication().invokeLater {
                 when {
                     actionType === ChatBotActionType.REFACTOR -> ui.updateReplaceableContent(response) {
-                        replaceSelectedText?.invoke(getCodeSection(response))
+                        replaceSelectedText?.invoke(response)
                     }
                     else -> ui.updateMessage(response)
                 }

@@ -126,7 +126,6 @@ class ApplicationSettingsPanel {
       """
       <html>
       A http or https URL of MTS Copilot server endpoint.<br/>
-      If leave empty, server endpoint config in <i>~/.tabby-client/agent/config.toml</i> will be used.<br/>
       Default to <i>http://localhost:8080</i>.
       </html>
       """.trimIndent()
