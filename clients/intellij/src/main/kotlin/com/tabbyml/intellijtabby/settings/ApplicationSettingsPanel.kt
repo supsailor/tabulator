@@ -24,6 +24,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.swing.ButtonGroup
 import javax.swing.JButton
+import javax.swing.JComponent
 import javax.swing.JPanel
 
 
@@ -201,6 +202,54 @@ class ApplicationSettingsPanel {
     )
     .panel
 
+  /*
+  private val nodeBinaryTextField = JBTextField()
+  private val nodeBinaryPanel = FormBuilder.createFormBuilder()
+    .addComponent(nodeBinaryTextField)
+    .addCopyableTooltip(
+      """
+      <html>
+      Path to the Node binary for running the MTS Copilot agent. The Node version must be >= 18.0.<br/>
+      If left empty, MTS Copilot will attempt to find the Node binary in the <i>PATH</i> environment variable.<br/>
+      </html>
+      """.trimIndent()
+    )
+    .panel
+
+   */
+
+  private val chatModelApiKeyTextField = JBTextField()
+  private val chatModelApiKeyPanel: JPanel = FormBuilder.createFormBuilder()
+          .addComponent(chatModelApiKeyTextField)
+          .addCopyableTooltip(
+                  """
+                  MTS AI Model API Key
+                  """.trimIndent()
+          )
+          .panel
+
+  private val chatModelPathTextField = JBTextField()
+  private val chatModelPathPanel: JPanel = FormBuilder.createFormBuilder()
+          .addComponent(chatModelPathTextField)
+          .addCopyableTooltip(
+                  """
+                  MTS AI Model http route
+                  """.trimIndent()
+          )
+          .panel
+
+  private val chatModelNameTextField = JBTextField()
+  private val chatModelNamePanel: JPanel = FormBuilder.createFormBuilder()
+          .addComponent(chatModelNameTextField)
+          .addCopyableTooltip(
+                  """
+                  MTS AI Model name
+                  """.trimIndent()
+          )
+          .panel
+
+
+
   private val resetMutedNotificationsButton = JButton("Reset \"Don't Show Again\" Notifications").apply {
     addActionListener {
       val settings = service<ApplicationSettingsState>()
@@ -222,6 +271,12 @@ class ApplicationSettingsPanel {
     .addLabeledComponent("Keymap", keymapStylePanel, 5, false)
     .addSeparator(5)
     .addLabeledComponent("<html>Node binary<br/>(Requires restart IDE)</html>", nodeBinaryPanel, 5, false)
+    .addSeparator(5)
+    .addLabeledComponent("MTS AI chat model name", chatModelNamePanel, 5, false)
+    .addSeparator(5)
+    .addLabeledComponent("MTS AI chat model path", chatModelPathPanel, 5, false)
+    .addSeparator(5)
+    .addLabeledComponent("MTS AI chat model api key", chatModelApiKeyPanel, 5, false)
     .addSeparator(5)
     .addLabeledComponent("Anonymous usage tracking", isAnonymousUsageTrackingPanel, 5, false)
     .apply {
@@ -279,4 +334,30 @@ class ApplicationSettingsPanel {
     set(value) {
       isAnonymousUsageTrackingDisabledCheckBox.isSelected = value
     }
+
+  /*
+  var nodeBinary: String
+    get() = nodeBinaryTextField.text
+    set(value) {
+      nodeBinaryTextField.text = value
+    }
+   */
+  var chatModelApiKey: String
+    get() = chatModelApiKeyTextField.text
+    set(value) {
+      chatModelApiKeyTextField.text = value
+    }
+
+  var chatModelPath: String
+    get() = chatModelPathTextField.text
+    set(value) {
+      chatModelPathTextField.text = value
+    }
+
+  var chatModelName: String
+    get() = chatModelNameTextField.text
+    set(value) {
+      chatModelNameTextField.text = value
+    }
+
 }

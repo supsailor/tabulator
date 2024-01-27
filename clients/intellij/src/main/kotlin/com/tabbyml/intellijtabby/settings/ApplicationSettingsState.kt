@@ -48,6 +48,30 @@ class ApplicationSettingsState : PersistentStateComponent<ApplicationSettingsSta
       nodeBinaryFlow.value = value
     }
 
+  private val chatModelApiKeyFlow = MutableStateFlow("")
+  val chatModelApiKeyState = chatModelApiKeyFlow.asStateFlow()
+  var chatModelApiKey: String = ""
+    set(value) {
+      field = value
+      chatModelApiKeyFlow.value = value
+    }
+
+  private val chatModelNameFlow = MutableStateFlow("")
+  val chatModelNameState = chatModelNameFlow.asStateFlow()
+  var chatModelName: String = ""
+    set(value) {
+      field = value
+      chatModelNameFlow.value = value
+    }
+
+  private val chatModelPathFlow = MutableStateFlow("")
+  val chatModelPathState = chatModelPathFlow.asStateFlow()
+  var chatModelPath: String = ""
+    set(value) {
+      field = value
+      chatModelPathFlow.value = value
+    }
+
   private val isAnonymousUsageTrackingDisabledFlow = MutableStateFlow(false)
   val isAnonymousUsageTrackingDisabledState = isAnonymousUsageTrackingDisabledFlow.asStateFlow()
   var isAnonymousUsageTrackingDisabled: Boolean = false
@@ -70,6 +94,9 @@ class ApplicationSettingsState : PersistentStateComponent<ApplicationSettingsSta
     val nodeBinary: String,
     val isAnonymousUsageTrackingDisabled: Boolean,
     val notificationsMuted: List<String>,
+    val chatModelName: String,
+    val chatModelPath: String,
+    val chatModelApiKey: String,
   )
 
   val data: State
@@ -79,6 +106,9 @@ class ApplicationSettingsState : PersistentStateComponent<ApplicationSettingsSta
       nodeBinary = nodeBinary,
       isAnonymousUsageTrackingDisabled = isAnonymousUsageTrackingDisabled,
       notificationsMuted = notificationsMuted,
+      chatModelName = chatModelName,
+      chatModelPath = chatModelPath,
+      chatModelApiKey = chatModelApiKey,
     )
 
   val state = combine(
@@ -87,6 +117,9 @@ class ApplicationSettingsState : PersistentStateComponent<ApplicationSettingsSta
     nodeBinaryState,
     isAnonymousUsageTrackingDisabledState,
     notificationsMutedState,
+    chatModelNameState,
+    chatModelPathState,
+    chatModelApiKeyState,
   ) { args ->
     State(
       completionTriggerMode = args[0] as TriggerMode,
@@ -94,6 +127,9 @@ class ApplicationSettingsState : PersistentStateComponent<ApplicationSettingsSta
       nodeBinary = args[2] as String,
       isAnonymousUsageTrackingDisabled = args[3] as Boolean,
       notificationsMuted = args[4] as List<String>,
+      chatModelName = args[5] as String,
+      chatModelPath = args[6] as String,
+      chatModelApiKey = args[7] as String,
     )
   }.stateIn(CoroutineScope(Dispatchers.IO), SharingStarted.Eagerly, this.data)
 

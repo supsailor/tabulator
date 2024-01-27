@@ -67,3 +67,9 @@ tasks {
     channels.set(listOf("alpha"))
   }
 }
+
+dependencies {
+  implementation("com.squareup.okhttp3:okhttp:4.9.2")
+  implementation("com.google.code.gson:gson:2.8.9")
+  implementation("org.commonmark:commonmark:0.20.0")
+}

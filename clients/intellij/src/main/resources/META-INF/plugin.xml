@@ -25,6 +25,7 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="ChatBot" factoryClass="com.tabbyml.intellijtabby.sidebar.chatbot.ChatBotToolWindow" anchor="right" icon="/icons/toolWindow.svg" canCloseContents="true" secondary="false" />
         <projectConfigurable
                 parentId="editor"
                 instance="com.tabbyml.intellijtabby.settings.ApplicationConfigurable"
@@ -139,5 +140,15 @@
             <reference id="Tabby.OpenSettings"/>
             <reference id="Tabby.OpenOnlineHelp"/>
         </group>
+        <action id="com.tabbyml.intellijtabby.sidebar.chatbot.actions.ChatBotExplainAction"
+                class="com.tabbyml.intellijtabby.sidebar.chatbot.actions.ChatBotExplainAction" text="Ask ChatBot To Explain"
+                description="Ask Chatbot about this code">
+            <add-to-group group-id="ToolWindowContextMenu" anchor="first"/>
+        </action>
+        <action id="com.tabbyml.intellijtabby.sidebar.chatbot.actions.ChatBotRefactorAction"
+                class="com.tabbyml.intellijtabby.sidebar.chatbot.actions.ChatBotRefactorAction" text="Ask ChatBot To Refactor"
+                description="Ask Chatbot to refactor this code">
+            <add-to-group group-id="ToolWindowContextMenu" anchor="first"/>
+        </action>
     </actions>
 </idea-plugin>
